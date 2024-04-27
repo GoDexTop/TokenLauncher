@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="https://tokens.dextop.pro/dexxx.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <title>LAUNCHER</title>
+    <center>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1200px;
+    margin: 0;
+    background: #000000;
+    background-size: cover; /* Ensure background covers the entire viewport */
+    font-family: 'Rubik', sans-serif;
+}
+
+        
+        .card {
+             
+            position: relative;
+            background-color: gray;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+.card2 {
+            
+            
+            bottom: 20px;
+            background-color: gray;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        /* Style the inputs and button */
+        input[type="text"],
+        input[type="number"],
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        h1 {
+            font-family: "Press Start 2P", system-ui;
+        }
+        #stars,
+#stars2,
+#stars3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+   
+    z-index: -1; /* Send the stars behind other content */
+    pointer-events: none; /* Allows interactions with content beneath the stars */
+}
+.conbutton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.conbutton:hover {
+    background-color: #0056b3;
+}
+.verbutton {
+    
+    
+    
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.verbutton:hover {
+    background-color: #0056b3;
+}
+
+.logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 30px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    padding: 10px;
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.spinner > div {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    opacity: 0.6;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    -webkit-animation: sk-bounce 2s infinite ease-in-out;
+    animation: sk-bounce 2s infinite ease-in-out;
+}
+
+.spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bounce {
+    0%, 100% {
+        -webkit-transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes sk-bounce {
+    0%, 100% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+        
+    </style>
+</head>
+<body>
+    <a href="https://dex.dextop.pro/liquidity" target="_blank">
+        <img src="https://tokens.dextop.pro/dexxx.svg" class="logo" alt="Dexxx Logo">
+    </a>
+
+
+<div class="card">
+    <h3>Tax Token</h3>
+    <h1>Launch</h1>
+    
+   <label for="contractOption">Dex Option:</label>
+<select id="contractOption" style="padding: 10px; border-radius: 8px;">
+    <option value="TokenContracts">DexTop</option>
+    <option value="TokenContracts2">PulseX</option>
+</select>
+    <br><br>
+   
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter token name">
+    <br><br>
+    <label for="ticker">Ticker:</label>
+    <input type="text" id="symbol" placeholder="Enter token symbol">
+    <br><br>
+    <label for="supply">Supply:</label>
+    <input type="number" id="supply" placeholder="100,000,000">
+    <br><br>
+    <label for="reward">Reward Token:</label>
+    <input type="text" id="reward" placeholder="Rewards Contract Address">
+    <br><br>
+    <label for="reward">Fees%:</label>
+    <input type="text" id="fees" placeholder="10">
+    <br><br>
+    <!-- Button to deploy token -->
+    <button id="deployButton">Deploy Token</button>
+    <br>
+    <!-- Display contract address -->
+    <div id="contractAddress"><span id="contractAddressValue"></span></div>
+    <!-- Container for verification link -->
+    <div id="linkContainer"></div>
+     <div id="loadingSpinner" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Deploying...
+        </span>
+        
+        <div id="loadingSpinner" class="spinner">
+            <p></p>
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+</div>
+        </div>
+        
+    </div>
+</div>
+
+   
+        <button class="conbutton" id="connectWalletButton">Connect Wallet</button>
+    
+    <script>
+        // Add event listener to the Connect Wallet button
+document.getElementById('connectWalletButton').addEventListener('click', connectWallet);
+
+// Function to connect the wallet using ethers.js
+async function connectWallet() {
+    try {
+        // Check if MetaMask is installed
+        if (typeof window.ethereum !== 'undefined') {
+            // Request access to MetaMask accounts
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            console.log('Connected wallet:', accounts[0]);
+            alert('Wallet connected successfully!');
+        } else {
+            // MetaMask or other injected provider not detected
+            console.error("MetaMask or other Web3 provider not detected.");
+            alert('Please install MetaMask or another Web3 provider.');
+        }
+    } catch (error) {
+        console.error("Error connecting wallet:", error);
+        alert('Error connecting wallet. Please try again.');
+    }
+}
+        
+        
+        
+    </script>
+    <br><br>
+<a class="verbutton" href="/advanced/info" target="_blank">INFO</a>
+<br><br><br>
+
+    <div class="card2">
+        
+        <h2>Taxed </h2>
+         <h3>for every buy, sell and transfer </h3>
+         <h3>Controlled launch </h3>
+         <h3>Earn for holding </h3>
+         <br>
+         <a class="verbutton" href="/admin" target="_blank">admin</a>
+         
+        
+        </div>
+         <br><br> <br><br>
+<span id='stars'></span>
+<span id='stars2'></span>
+<span id='stars3'></span>
+<!-- Include ethers.js library 
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>-->
+<!-- Include token.js -->
+<script src="token.js" type="application/javascript"></script>
+<script src="../golf.js" type="application/javascript"></script>
+</body>
+</html>
